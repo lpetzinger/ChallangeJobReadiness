@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="text_description">
+
+        <item name="android:textSize">
+            11sp
+        </item>
+
+        <item name="android:letterSpacing">
+            -0.01
+        </item>
+
+        <item name="android:textColor">
+            #999B9C
+        </item>
+
+    </style>
+
+    <style name="text_price">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#E6000000</item>
+    </style>
+
+
+    <style name="text_title">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+
+    <style name="input_text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#73000000</item>
+    </style>
+
+
+</resources>

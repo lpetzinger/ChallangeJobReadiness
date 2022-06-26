@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/image_product"
+        android:layout_width="150dp"
+        android:padding="12dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/product_image"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:id="@+id/text_title"
+        style="@style/text_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/product_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_product"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_price"
+        style="@style/text_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_product"
+        app:layout_constraintTop_toBottomOf="@id/text_title" />
+
+    <TextView
+        style="@style/text_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/product_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_product"
+        app:layout_constraintTop_toBottomOf="@id/text_price" />
+
+
+    <View
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/image_product"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

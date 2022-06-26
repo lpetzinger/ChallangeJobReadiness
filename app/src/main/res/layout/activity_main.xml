@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#FFE600"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="19dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="@string/button_back"
+            android:src="@drawable/ic_arrow_back" />
+
+
+        <RelativeLayout
+
+            android:id="@+id/text_area"
+            android:layout_width="263dp"
+            android:layout_height="30dp"
+            android:background="@drawable/text_area"
+            android:elevation="5dp">
+
+            <ImageView
+                android:layout_width="14.65dp"
+                android:layout_height="14.65dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/button_back"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:layout_width="219dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="22dp"
+                android:background="@color/white"
+                android:hint="@string/search_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:lineSpacingExtra="4sp"
+                android:textAppearance="@style/input_text" />
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="19dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="@string/button_back"
+            android:src="@drawable/ic_cart" />
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_products"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_search_bar"
+        tools:listitem="@layout/card_product" />
+</androidx.constraintlayout.widget.ConstraintLayout>
