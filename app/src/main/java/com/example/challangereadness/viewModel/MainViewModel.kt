@@ -9,11 +9,20 @@ import com.example.challangereadness.repository.ProductsRepository
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _products = MutableLiveData<List<ProductModel>>()
-    private val repository = ProductsRepository.getInstance(application)
-    val products: LiveData<List<ProductModel>> = _products
+    private val _category = MutableLiveData<String>()
 
-    fun getAll(){
+    val products: LiveData<List<ProductModel>> = _products
+    val category: LiveData<String> = _category
+
+    private val repository = ProductsRepository.getInstance(application)
+
+    fun getAll() {
         val list = repository.getAll()
         _products.value = list
+    }
+
+    fun setCategory(category: String) {
+        _category.value = category
+        repository.setCategory(category)
     }
 }

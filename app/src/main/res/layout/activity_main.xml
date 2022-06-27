@@ -69,8 +69,19 @@
             android:contentDescription="@string/button_back"
             android:src="@drawable/ic_cart" />
 
-
     </LinearLayout>
+
+
+    <Spinner
+        android:id="@+id/spinner_categories"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_bg"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_search_bar" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_products"
@@ -78,6 +89,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_search_bar"
+        app:layout_constraintTop_toBottomOf="@id/spinner_categories"
         tools:listitem="@layout/card_product" />
 </androidx.constraintlayout.widget.ConstraintLayout>

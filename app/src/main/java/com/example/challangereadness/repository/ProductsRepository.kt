@@ -1,6 +1,7 @@
 package com.example.challangereadness.repository
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import com.example.challangereadness.model.ProductModel
 
 class ProductsRepository private constructor(context: Context){
@@ -24,6 +25,10 @@ class ProductsRepository private constructor(context: Context){
         list.add(ProductModel("Product2", "src", 500F))
 
         return list
+    }
+
+    fun setCategory(_category: String) {
+
     }
 
 }

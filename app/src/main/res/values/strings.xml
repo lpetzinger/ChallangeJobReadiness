@@ -8,4 +8,12 @@
     <string name="price">Price</string>
     <string name="product_title">Product Title</string>
     <string name="product_image">product_image</string>
+    <string name="categories">Ahotbrew.com - Dropdown</string>
+    <string-array name="brew_array">
+        <item>Cappuccino</item>
+        <item>Espresso</item>
+        <item>Mocha</item>
+        <item>Caffè Americano</item>
+        <item>Cafe Zorro</item>
+    </string-array>
 </resources>
