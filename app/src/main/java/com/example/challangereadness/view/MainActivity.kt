@@ -41,13 +41,14 @@ class MainActivity : AppCompatActivity() {
             getCategory()
         }
 
-        binding.editTextInputSearch.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        binding.editTextInputSearch.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 getCategory()
                 return@OnKeyListener true
             }
             false
         })
+
         val productsState = StatePreferences(this)
         val productListener = object : ProductListener {
             override fun onCLick(image: String?, title: String?, price: String?) {
