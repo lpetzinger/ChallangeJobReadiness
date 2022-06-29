@@ -18,7 +18,7 @@
         <entry key="app/src/main/res/drawable/text_area.xml" value="0.2955" />
         <entry key="app/src/main/res/layout-v31/activity_main.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3302083333333333" />
-        <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.16510416666666666" />
+        <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_products_list_fragment.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/layout/card_product.xml" value="0.33" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.1640625" />

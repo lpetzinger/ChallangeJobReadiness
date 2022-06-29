@@ -46,7 +46,7 @@
                 android:src="@drawable/ic_search" />
 
             <EditText
-                android:id="@+id/text_input_search"
+                android:id="@+id/edit_text_input_search"
                 android:layout_width="219dp"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="true"

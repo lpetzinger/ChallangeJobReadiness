@@ -4,7 +4,7 @@
     <style name="text_description">
 
         <item name="android:textSize">
-            11sp
+            12sp
         </item>
 
         <item name="android:letterSpacing">

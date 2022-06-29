@@ -1,20 +1,17 @@
 package com.example.challangereadness.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.KeyEvent
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangereadness.adapter.ProductsAdapter
 import com.example.challangereadness.databinding.ActivityMainBinding
-import com.example.challangereadness.repository.API.Category.CategoryEntity
-import com.example.challangereadness.repository.API.Category.CategoryService
-import com.example.challangereadness.repository.API.RetrofitClient
+import com.example.challangereadness.listener.ProductListener
 import com.example.challangereadness.viewModel.MainViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -25,12 +22,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         super.onCreate(savedInstanceState)
-        binding.imageSearch.setOnClickListener {
-            getCategory()
-        }
         getCategory()
         startAdapter()
         observe()
+        setListeners()
         setContentView(binding.root)
 
     }
@@ -40,13 +35,36 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun setListeners() {
+        binding.imageSearch.setOnClickListener {
+            getCategory()
+        }
+
+        binding.editTextInputSearch.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                getCategory()
+                return@OnKeyListener true
+            }
+            false
+        })
+
+        val productListener = object : ProductListener{
+            override fun onCLick(productTitle: String) {
+               startActivity(Intent(this@MainActivity, ProductDetailsActivity::class.java))
+            }
+
+        }
+
+        adapter.attachListener(productListener)
+
+    }
+
     private fun observe() {
         viewModel.products.observe(this) {
             adapter.updateProducts(it)
 
         }
     }
-
 
     private fun startAdapter() {
         binding.recyclerProducts.layoutManager =

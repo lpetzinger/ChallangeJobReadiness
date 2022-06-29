@@ -9,6 +9,9 @@
     <string name="product_title">Product Title</string>
     <string name="product_image">product_image</string>
     <string name="categories">Ahotbrew.com - Dropdown</string>
+    <string name="buy_now">Comprar Agora</string>
+    <string name="add_to_cart">Adicionar ao carrinho</string>
+    <string name="send_text">Enviar para Usuário - Endereço</string>
     <string-array name="brew_array">
         <item>Cappuccino</item>
         <item>Espresso</item>

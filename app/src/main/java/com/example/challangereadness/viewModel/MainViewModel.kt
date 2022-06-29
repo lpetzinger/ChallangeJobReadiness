@@ -33,7 +33,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun getCategory(binding: ActivityMainBinding) {
         val service = RetrofitClient.create(CategoryService::class.java)
         val call: Call<List<CategoryEntity>> =
-            service.getCategory(1, binding.textInputSearch.text.toString())
+            service.getCategory(1, binding.editTextInputSearch.text.toString())
         call.enqueue(object : Callback<List<CategoryEntity>> {
             override fun onResponse(
                 call: Call<List<CategoryEntity>>, response: Response<List<CategoryEntity>>
