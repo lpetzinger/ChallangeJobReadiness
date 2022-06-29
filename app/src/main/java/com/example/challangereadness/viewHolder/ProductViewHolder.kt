@@ -12,7 +12,7 @@ class ProductViewHolder(private val binding: CardProductBinding): RecyclerView.V
         val image = binding.imageProduct
         binding.textTitle.text = product.body?.title
         binding.textPrice.text = product.body?.price.toString()
-        Picasso.get().load(product.body?.thumbnail).placeholder(R.drawable.placeholder)
+        Picasso.get().load(product.body?.secure_thumbnail).placeholder(R.drawable.placeholder)
             .error(R.drawable.placeholder)
             .into(image)
     }
