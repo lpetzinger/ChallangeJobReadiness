@@ -4,12 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangereadness.adapter.ProductsAdapter
 import com.example.challangereadness.databinding.ActivityMainBinding
+import com.example.challangereadness.infra.ConstantKeys
+import com.example.challangereadness.infra.StatePreferences
 import com.example.challangereadness.listener.ProductListener
 import com.example.challangereadness.viewModel.MainViewModel
 
@@ -25,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         getCategory()
         startAdapter()
         observe()
-        setListeners()
         setContentView(binding.root)
+        setListeners()
 
     }
 
@@ -47,10 +48,13 @@ class MainActivity : AppCompatActivity() {
             }
             false
         })
-
-        val productListener = object : ProductListener{
-            override fun onCLick(productTitle: String) {
-               startActivity(Intent(this@MainActivity, ProductDetailsActivity::class.java))
+        val productsState = StatePreferences(this)
+        val productListener = object : ProductListener {
+            override fun onCLick(image: String?, title: String?, price: String?) {
+                productsState.setProductState(ConstantKeys.IMAGE, image)
+                productsState.setProductState(ConstantKeys.TITLE, title)
+                productsState.setProductState(ConstantKeys.PRICE, price)
+                startActivity(Intent(this@MainActivity, ProductDetailsActivity::class.java))
             }
 
         }
