@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.challangereadness.databinding.CardProductBinding
-import com.example.challangereadness.model.ProductModel
+import com.example.challangereadness.repository.API.Product.ProductEntity
 import com.example.challangereadness.viewHolder.ProductViewHolder
 
 
 class ProductsAdapter : RecyclerView.Adapter<ProductViewHolder>() {
-    private var productsList: List<ProductModel> = listOf()
+    private var productsList: List<ProductEntity> = listOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val cardProduct =
             CardProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,8 +23,9 @@ class ProductsAdapter : RecyclerView.Adapter<ProductViewHolder>() {
     override fun getItemCount(): Int = productsList.count()
 
 
-    fun updateProducts(list: List<ProductModel>) {
+    fun updateProducts(list: List<ProductEntity>) {
         productsList = list
+        notifyDataSetChanged()
 
     }
 

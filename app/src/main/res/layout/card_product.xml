@@ -51,7 +51,7 @@
         android:layout_width="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="1dp"
+        android:layout_height="0.6dp"
         android:background="#999B9C"
         app:layout_constraintTop_toBottomOf="@id/image_product"/>
 
