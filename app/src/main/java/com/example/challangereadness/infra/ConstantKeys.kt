@@ -7,6 +7,9 @@ class ConstantKeys {
     companion object {
         const val ID = "id"
         const val PRODUCT_INFO = "ProductInfo"
+        const val FAVORITES = "Favorites"
+        const val ADD_FAVORITES = "Produto adicionado aos Favoritos"
+        const val REMOVE_FAVORITES = "Produto removido dos Favoritos"
         const val IMAGE = "image"
         const val TITLE = "title"
         const val PRICE = "price"
