@@ -18,8 +18,6 @@ class ProductDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[ProductDetailsViewModel::class.java]
-
-
         super.onCreate(savedInstanceState)
         getProductInfo()
         setListeners()

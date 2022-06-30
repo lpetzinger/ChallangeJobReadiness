@@ -1,6 +1,7 @@
 package com.example.challangereadness.viewModel
 
 import android.app.Application
+import android.graphics.Paint
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import com.example.challangereadness.R
@@ -13,7 +14,6 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 class ProductDetailsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -35,9 +35,12 @@ class ProductDetailsViewModel(application: Application) : AndroidViewModel(appli
 
                     binding.textPrice.text = ConstantKeys.formatToCurrency(data!!.price, "BRL", 2)
 
+
+
                     val validOldPrice = if(data.originalPrice != 0F) data.originalPrice else data.price
                     binding.textOldPrice.text =
                         ConstantKeys.formatToCurrency(validOldPrice, "BRL", 2)
+                    binding.textOldPrice.paintFlags = binding.textOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
                     binding.textSubtitle.text =
                         if (data.condition == "new") "Novo - ${data.soldQuantity} vendidos" else "Usado"

@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangereadness.adapter.ProductsAdapter
 import com.example.challangereadness.databinding.ActivityMainBinding
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startAdapter() {
         binding.recyclerProducts.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            GridLayoutManager(this, 2)
         binding.recyclerProducts.adapter = adapter
     }
 }

@@ -16,6 +16,10 @@ class ProductViewHolder(private val binding: CardProductBinding, private val lis
         val productImage = product.body!!.pictures[0].secure_url
         val productTitle = product.body!!.title
         val productPrice = ConstantKeys.formatToCurrency(product.body!!.price, "BRL", 2)
+        binding.textInstallment.text = binding.textInstallment.text.toString().replace(
+            "R$00",
+            ConstantKeys.formatToCurrency(product.body!!.price / 18, "BRL", 2)
+        )
 
         binding.textTitle.text = productTitle
         binding.textPrice.text = productPrice

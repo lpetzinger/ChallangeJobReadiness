@@ -3,64 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_product"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp">
 
 
-    <ImageView
-        android:id="@+id/image_product"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:contentDescription="@string/product_image"
-        android:padding="12dp"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/text_title"
-        style="@style/text_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/product_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image_product"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_price"
-        style="@style/text_price"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image_product"
-        app:layout_constraintTop_toBottomOf="@id/text_title" />
-
-    <TextView
-        android:id="@+id/text_installment"
-        style="@style/text_description"
+    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/installmentMain"
-        android:textSize="10sp"
-        android:textColor="#4CAF50"
-        app:layout_constraintStart_toEndOf="@id/image_product"
-        app:layout_constraintTop_toBottomOf="@id/text_price"
-        tools:ignore="SmallSp" />
+        android:layout_height="match_parent"
+        card_view:cardUseCompatPadding="true"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/image_product"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="@string/product_image"
+                android:padding="12dp"
+                android:src="@drawable/ic_launcher_background" />
 
 
+            <TextView
+                android:id="@+id/text_title"
+                style="@style/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:maxWidth="160dp"
+                android:text="@string/product_title"
+                app:layout_constraintTop_toBottomOf="@+id/image_product" />
+
+            <TextView
+                android:id="@+id/text_price"
+                style="@style/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_title" />
+
+            <TextView
+                android:id="@+id/text_installment"
+                style="@style/text_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/installmentMain"
+                android:textColor="#4CAF50"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@id/text_price"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
 
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0.6dp"
-        android:background="#999B9C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_product" />
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
