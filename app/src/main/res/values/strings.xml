@@ -12,6 +12,14 @@
     <string name="buy_now">Comprar Agora</string>
     <string name="add_to_cart">Adicionar ao carrinho</string>
     <string name="send_text">Enviar para Usuário - Endereço</string>
+    <string name="old_price"> <strike>Old price</strike></string>
+    <string name="installment">18x R$00 sem juros com o cartão Mercado Pago</string>
+    <string name="installmentMain">18x R$00 sem juros \n <b>Frete Grátis</b></string>
+    <string name="payment_methods">Ver os meios de pagamento</string>
+    <string name="product">Produto</string>
+    <string name="storage">Estoque disponível</string>
+    <string name="description_title">Descrição</string>
+    <string name="description_content">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</string>
     <string-array name="brew_array">
         <item>Cappuccino</item>
         <item>Espresso</item>

@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.ChallangeReadness" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#FFE600</item>
-        <item name="colorPrimaryVariant">#FFE600</item>
+        <item name="colorPrimary">#FDDD11</item>
+        <item name="colorPrimaryVariant">#FDDD11</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

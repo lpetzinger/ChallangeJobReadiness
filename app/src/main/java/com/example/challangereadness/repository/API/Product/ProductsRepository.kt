@@ -29,9 +29,9 @@ class ProductsRepository private constructor(context: Context) {
     private fun getProducts(list: List<String>, _products: MutableLiveData<List<ProductEntity>>) {
         val queryString = StringBuffer()
         list.forEach {
-            queryString.append("$it ")
+            queryString.append("$it,")
         }
-        val newQueryString: String = queryString.toString().replace(" ", ",")
+        val newQueryString: String = queryString.toString()
         val service = RetrofitClient.create(ProductService::class.java)
         val call: Call<List<ProductEntity>> = service.getProducts(newQueryString)
 

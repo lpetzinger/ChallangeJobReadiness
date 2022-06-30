@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity() {
         binding.imageSearch.setOnClickListener {
             getCategory()
         }
-
-        binding.editTextInputSearch.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
+        val inputSearch = binding.editTextInputSearch
+        inputSearch.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 getCategory()
                 return@OnKeyListener true
@@ -51,10 +51,8 @@ class MainActivity : AppCompatActivity() {
 
         val productsState = StatePreferences(this)
         val productListener = object : ProductListener {
-            override fun onCLick(image: String?, title: String?, price: String?) {
-                productsState.setProductState(ConstantKeys.IMAGE, image)
-                productsState.setProductState(ConstantKeys.TITLE, title)
-                productsState.setProductState(ConstantKeys.PRICE, price)
+            override fun onCLick(id: String) {
+                productsState.setProductState("id", id)
                 startActivity(Intent(this@MainActivity, ProductDetailsActivity::class.java))
             }
 

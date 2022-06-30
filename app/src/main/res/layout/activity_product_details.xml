@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <View
-        android:id="@+id/view_top_bar"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:background="#FDDD11"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view_header"
@@ -22,37 +13,51 @@
         android:background="#FDDD11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_top_bar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/image_button_back"
         android:layout_width="21dp"
         android:layout_height="19dp"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="11dp"
         android:contentDescription="@string/button_back"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_top_bar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/image_cart"
         android:layout_width="21dp"
         android:layout_height="19dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="12dp"
         android:contentDescription="@string/button_back"
         android:src="@drawable/ic_cart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_top_bar" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="21dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/button_back"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintEnd_toStartOf="@+id/image_cart"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_location"
         android:layout_width="10dp"
         android:layout_height="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="11dp"
         android:contentDescription="@string/button_back"
         android:src="@drawable/ic_location"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="11dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_header"/>
+        app:layout_constraintBottom_toBottomOf="@+id/view_header"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/text_send"
@@ -66,10 +71,26 @@
         app:layout_constraintStart_toEndOf="@+id/image_location"
         app:layout_constraintTop_toTopOf="@+id/image_location" />
 
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/text_product"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/product"
+        android:textColor="#CC4C4B4B"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_button_back"
+        app:layout_constraintStart_toEndOf="@id/image_button_back"
+        app:layout_constraintTop_toTopOf="@id/image_button_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_header"
+        android:layout_height="0dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,6 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view_header">
 
         <TextView
+            android:id="@+id/text_subtitle"
             style="@style/text_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,28 +125,71 @@
             android:layout_height="275dp"
             android:layout_marginTop="12dp"
             android:contentDescription="@string/product_image"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/placeholder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <TextView
+            android:id="@+id/text_old_price"
+
+            style="@style/text_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/old_price"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@id/image_product"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/text_price"
             style="@style/text_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:text="@string/price"
             app:layout_constraintStart_toEndOf="@id/image_product"
             app:layout_constraintTop_toBottomOf="@id/text_title" />
+
+        <TextView
+            android:id="@+id/text_installment"
+            style="@style/text_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/installment"
+            android:textColor="#4CAF50"
+            app:layout_constraintStart_toEndOf="@id/image_product"
+            app:layout_constraintTop_toBottomOf="@id/text_title" />
+
+        <TextView
+            android:id="@+id/payment_methods"
+            style="@style/text_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/payment_methods"
+            android:textColor="#3483FA"
+            app:layout_constraintStart_toEndOf="@id/image_product"
+            app:layout_constraintTop_toBottomOf="@id/text_title" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/storage"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button_buy_now"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#3483FA"
-            android:text="@string/buy_now" />
+            android:text="@string/buy_now"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_add_to_cart"
@@ -134,7 +199,31 @@
             android:text="@string/add_to_cart"
             android:textColor="#3483FA" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/text_description_title"
+            style="@style/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/description_title"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/image_product"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/text_description_content"
+            style="@style/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/description_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintStart_toEndOf="@id/image_product"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
