@@ -1,12 +1,12 @@
-package com.example.challangereadness.repository.API.Product
+package com.example.challangereadness.repository
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.example.challangereadness.repository.API.HighLight.HighLights
-import com.example.challangereadness.repository.API.RetrofitClient
-import com.example.challangereadness.view.MainActivity
+import com.example.challangereadness.model.HighLight.HighLightsModel
+import com.example.challangereadness.model.Product.ProductModel
+import com.example.challangereadness.service.ProductService
+import com.example.challangereadness.service.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,21 +27,21 @@ class ProductsRepository private constructor(context: Context) {
     }
 
 
-    private fun getProducts(list: List<String>, _products: MutableLiveData<List<ProductEntity>>) {
+    private fun getProducts(list: List<String>, _products: MutableLiveData<List<ProductModel>>) {
         val queryString = StringBuffer()
         list.forEach {
             queryString.append("$it,")
         }
         val newQueryString: String = queryString.toString()
         val service = RetrofitClient.create(ProductService::class.java)
-        val call: Call<List<ProductEntity>> = service.getProducts(newQueryString)
+        val call: Call<List<ProductModel>> = service.getProducts(newQueryString)
 
 
         try {
-            call.enqueue(object : Callback<List<ProductEntity>> {
+            call.enqueue(object : Callback<List<ProductModel>> {
                 override fun onResponse(
-                    call: Call<List<ProductEntity>>,
-                    response: Response<List<ProductEntity>>
+                    call: Call<List<ProductModel>>,
+                    response: Response<List<ProductModel>>
                 ) {
                         _products.value = response.body()!!.filter {
                             it.body?.pictures!!.isNotEmpty()
@@ -50,7 +50,7 @@ class ProductsRepository private constructor(context: Context) {
 
                 }
 
-                override fun onFailure(call: Call<List<ProductEntity>>, t: Throwable) {
+                override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                     Log.d("xablau", "$t")
                 }
 
@@ -64,8 +64,8 @@ class ProductsRepository private constructor(context: Context) {
 
 
     fun createList(
-        response: Response<HighLights>,
-        _products: MutableLiveData<List<ProductEntity>>
+        response: Response<HighLightsModel>,
+        _products: MutableLiveData<List<ProductModel>>
     ) {
         val list = mutableListOf<String>()
         response.body()?.content?.forEach {
@@ -76,12 +76,12 @@ class ProductsRepository private constructor(context: Context) {
     }
 
 
-    fun setCategory(_category: String, _products: MutableLiveData<List<ProductEntity>>) {
+    fun setCategory(_category: String, _products: MutableLiveData<List<ProductModel>>) {
         val service = RetrofitClient.create(ProductService::class.java)
-        val call: Call<HighLights> = service.getIdProducts(_category)
+        val call: Call<HighLightsModel> = service.getIdProducts(_category)
         try {
-            call.enqueue(object : Callback<HighLights> {
-                override fun onResponse(call: Call<HighLights>, response: Response<HighLights>) {
+            call.enqueue(object : Callback<HighLightsModel> {
+                override fun onResponse(call: Call<HighLightsModel>, response: Response<HighLightsModel>) {
                     if (response.raw().code() != 200) {
                         setCategory("MLB437616", _products)
                     } else {
@@ -90,7 +90,7 @@ class ProductsRepository private constructor(context: Context) {
                     }
                 }
 
-                override fun onFailure(call: Call<HighLights>, t: Throwable) {
+                override fun onFailure(call: Call<HighLightsModel>, t: Throwable) {
                     Log.d("xablau", "$t")
                 }
 

@@ -1,27 +1,25 @@
 package com.example.challangereadness.viewModel
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.challangereadness.databinding.ActivityMainBinding
-import com.example.challangereadness.repository.API.Category.CategoryEntity
-import com.example.challangereadness.repository.API.Category.CategoryService
-import com.example.challangereadness.repository.API.Product.ProductEntity
-import com.example.challangereadness.repository.API.Product.ProductsRepository
-import com.example.challangereadness.repository.API.RetrofitClient
+import com.example.challangereadness.model.Category.CategoryModel
+import com.example.challangereadness.service.CategoryService
+import com.example.challangereadness.model.Product.ProductModel
+import com.example.challangereadness.repository.ProductsRepository
+import com.example.challangereadness.service.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private val _products = MutableLiveData<List<ProductEntity>>()
+    private val _products = MutableLiveData<List<ProductModel>>()
     private val _category = MutableLiveData<String>()
 
-    val products: LiveData<List<ProductEntity>>
+    val products: LiveData<List<ProductModel>>
         get() = _products
 
     val category: LiveData<String>
@@ -32,11 +30,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getCategory(binding: ActivityMainBinding) {
         val service = RetrofitClient.create(CategoryService::class.java)
-        val call: Call<List<CategoryEntity>> =
+        val call: Call<List<CategoryModel>> =
             service.getCategory(1, binding.editTextInputSearch.text.toString())
-        call.enqueue(object : Callback<List<CategoryEntity>> {
+        call.enqueue(object : Callback<List<CategoryModel>> {
             override fun onResponse(
-                call: Call<List<CategoryEntity>>, response: Response<List<CategoryEntity>>
+                call: Call<List<CategoryModel>>, response: Response<List<CategoryModel>>
             ) {
                 if (response.raw().code() != 200) {
                     setCategory("MLB437616")
@@ -46,7 +44,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
             }
 
-            override fun onFailure(call: Call<List<CategoryEntity>>, t: Throwable) {
+            override fun onFailure(call: Call<List<CategoryModel>>, t: Throwable) {
                 Log.d("xablau", "$t")
             }
 

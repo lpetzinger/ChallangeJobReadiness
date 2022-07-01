@@ -7,9 +7,9 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.challangereadness.R
 import com.example.challangereadness.databinding.ActivityProductDetailsBinding
 import com.example.challangereadness.infra.ConstantKeys
-import com.example.challangereadness.repository.API.Product.ProductEntity
-import com.example.challangereadness.repository.API.Product.ProductService
-import com.example.challangereadness.repository.API.RetrofitClient
+import com.example.challangereadness.model.Product.ProductModel
+import com.example.challangereadness.service.ProductService
+import com.example.challangereadness.service.RetrofitClient
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,14 +20,14 @@ class ProductDetailsViewModel(application: Application) : AndroidViewModel(appli
 
     fun getProductInfo(binding: ActivityProductDetailsBinding, id: String) {
         val service = RetrofitClient.create(ProductService::class.java)
-        val call: Call<List<ProductEntity>> = service.getProducts(id)
+        val call: Call<List<ProductModel>> = service.getProducts(id)
 
 
         try {
-            call.enqueue(object : Callback<List<ProductEntity>> {
+            call.enqueue(object : Callback<List<ProductModel>> {
                 override fun onResponse(
-                    call: Call<List<ProductEntity>>,
-                    response: Response<List<ProductEntity>>
+                    call: Call<List<ProductModel>>,
+                    response: Response<List<ProductModel>>
                 ) {
                     val data = response.body()!![0].body
 
@@ -58,7 +58,7 @@ class ProductDetailsViewModel(application: Application) : AndroidViewModel(appli
 
                 }
 
-                override fun onFailure(call: Call<List<ProductEntity>>, t: Throwable) {
+                override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                     Log.d("xablau", "$t")
                 }
 

@@ -1,9 +1,8 @@
-package com.example.challangereadness.repository.API.Category
+package com.example.challangereadness.service
 
-import com.example.challangereadness.repository.API.Category.CategoryEntity
+import com.example.challangereadness.model.Category.CategoryModel
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface CategoryService {
@@ -11,5 +10,5 @@ interface CategoryService {
     fun getCategory(
         @Query("limit") qtd: Int,
         @Query("q") term: String = "computador"
-    ): Call<List<CategoryEntity>>
+    ): Call<List<CategoryModel>>
 }

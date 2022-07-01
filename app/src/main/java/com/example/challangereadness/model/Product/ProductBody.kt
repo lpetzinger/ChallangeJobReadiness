@@ -1,4 +1,4 @@
-package com.example.challangereadness.repository.API.Product
+package com.example.challangereadness.model.Product
 
 import com.google.gson.annotations.SerializedName
 

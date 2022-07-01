@@ -1,4 +1,4 @@
-package com.example.challangereadness.repository.API
+package com.example.challangereadness.service
 
 
 import com.google.gson.GsonBuilder
