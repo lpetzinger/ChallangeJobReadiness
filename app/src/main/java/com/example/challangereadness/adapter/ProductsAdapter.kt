@@ -1,5 +1,6 @@
 package com.example.challangereadness.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,13 +10,13 @@ import com.example.challangereadness.model.Product.ProductModel
 import com.example.challangereadness.viewHolder.ProductViewHolder
 
 
-class ProductsAdapter : RecyclerView.Adapter<ProductViewHolder>() {
+class ProductsAdapter(private val context: Context) : RecyclerView.Adapter<ProductViewHolder>() {
     private var productsList: List<ProductModel> = listOf()
     private lateinit var listener: ProductListener
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val cardProduct =
             CardProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ProductViewHolder(cardProduct, listener)
+        return ProductViewHolder(cardProduct, listener, context)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -31,7 +32,7 @@ class ProductsAdapter : RecyclerView.Adapter<ProductViewHolder>() {
 
     }
 
-    fun attachListener(productListener: ProductListener){
+    fun attachListener(productListener: ProductListener) {
         listener = productListener
     }
 

@@ -4,21 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.challangereadness.R
 import com.example.challangereadness.adapter.ProductsAdapter
 import com.example.challangereadness.databinding.ActivityMainBinding
+import com.example.challangereadness.databinding.CardProductBinding
 import com.example.challangereadness.infra.ConstantKeys
 import com.example.challangereadness.infra.StatePreferences
 import com.example.challangereadness.listener.ProductListener
 import com.example.challangereadness.viewModel.MainViewModel
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private var adapter = ProductsAdapter()
+    private var adapter = ProductsAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setListeners()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startAdapter()
     }
 
     private fun getCategory() {
@@ -57,11 +66,57 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, ProductDetailsActivity::class.java))
             }
 
+            override fun onFavorite(holderBinding: CardProductBinding, id: String) {
+                val productState = StatePreferences(this@MainActivity)
+                val favorites =
+                    StatePreferences(this@MainActivity).getFavoriteState(ConstantKeys.FAVORITES)
+                val isFavorite = favorites.contains(id)
+
+                if (!isFavorite) {
+                    StatePreferences(this@MainActivity).setFavoriteState(
+                        ConstantKeys.FAVORITES,
+                        "$favorites,$id"
+                    )
+                    Toast.makeText(
+                        this@MainActivity,
+                        ConstantKeys.ADD_FAVORITES,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    StatePreferences(this@MainActivity).setFavoriteState(
+                        ConstantKeys.FAVORITES,
+                        favorites.replace(id, "")
+                    )
+
+
+                    Toast.makeText(
+                        this@MainActivity,
+                        ConstantKeys.REMOVE_FAVORITES,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                validFavorite(id, productState, holderBinding)
+            }
+
         }
 
         adapter.attachListener(productListener)
 
     }
+
+    private fun validFavorite(
+        id: String,
+        productState: StatePreferences,
+        holderBinding: CardProductBinding
+    ) {
+        val favorites = StatePreferences(this).getFavoriteState(ConstantKeys.FAVORITES)
+        val isFavorite = favorites.contains(id)
+        val source = if (isFavorite) R.drawable.ic_is_favorite else R.drawable.ic_favorite
+        Picasso.get().load(source).error(R.drawable.placeholder).into(holderBinding.buttonFavorite)
+
+    }
+
 
     private fun observe() {
         viewModel.products.observe(this) {
