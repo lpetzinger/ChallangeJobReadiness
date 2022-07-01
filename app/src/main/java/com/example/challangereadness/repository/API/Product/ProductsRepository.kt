@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.challangereadness.repository.API.HighLight.HighLights
 import com.example.challangereadness.repository.API.RetrofitClient
+import com.example.challangereadness.view.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +43,9 @@ class ProductsRepository private constructor(context: Context) {
                     call: Call<List<ProductEntity>>,
                     response: Response<List<ProductEntity>>
                 ) {
-                    _products.value = response.body()
+                        _products.value = response.body()!!.filter {
+                            it.body?.pictures!!.isNotEmpty()
+                        }
 
 
                 }
@@ -79,8 +82,12 @@ class ProductsRepository private constructor(context: Context) {
         try {
             call.enqueue(object : Callback<HighLights> {
                 override fun onResponse(call: Call<HighLights>, response: Response<HighLights>) {
-                    createList(response, _products)
+                    if (response.raw().code() != 200) {
+                        setCategory("MLB437616", _products)
+                    } else {
+                        createList(response, _products)
 
+                    }
                 }
 
                 override fun onFailure(call: Call<HighLights>, t: Throwable) {

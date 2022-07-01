@@ -38,7 +38,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             override fun onResponse(
                 call: Call<List<CategoryEntity>>, response: Response<List<CategoryEntity>>
             ) {
-                response.body()?.get(0)?.let { setCategory(it.categoryId) }
+                if (response.raw().code() != 200) {
+                    setCategory("MLB437616")
+                } else {
+                    response.body()?.get(0)?.let { setCategory(it.categoryId) }
+                }
 
             }
 
