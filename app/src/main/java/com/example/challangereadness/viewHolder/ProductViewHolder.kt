@@ -32,7 +32,7 @@ class ProductViewHolder(
             listener.onCLick(product.body!!.id)
 
         }
-        binding.buttonFavorite.setOnClickListener {
+        binding.imageEllipseFavorite.setOnClickListener {
             listener.onFavorite(binding, product.body!!.id)
 
 
