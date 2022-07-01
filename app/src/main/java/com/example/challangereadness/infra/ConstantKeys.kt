@@ -11,6 +11,8 @@ class ConstantKeys {
         const val ADD_FAVORITES = "Produto adicionado aos Favoritos"
         const val REMOVE_FAVORITES = "Produto removido dos Favoritos"
         const val IMAGE_PLACEHOLDER = "https://blog.iprocess.com.br/wp-content/uploads/2021/11/placeholder.png"
+        const val DIALOG_TITLE = "Categoria Inválida!"
+        const val  DIALOG_MESSAGE = "Tente uma categoria diferente"
         const val IMAGE = "image"
         const val TITLE = "title"
         const val PRICE = "price"

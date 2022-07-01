@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.challangereadness.databinding.ActivityMainBinding
+import com.example.challangereadness.listener.ErrorListener
 import com.example.challangereadness.model.Category.CategoryModel
 import com.example.challangereadness.service.CategoryService
 import com.example.challangereadness.model.Product.ProductModel
@@ -15,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application, errorListener: ErrorListener) : AndroidViewModel(application) {
     private val _products = MutableLiveData<List<ProductModel>>()
     private val _category = MutableLiveData<String>()
 
@@ -25,7 +26,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val category: LiveData<String>
         get() = _category
 
-    private val productsRepository = ProductsRepository.getInstance(application)
+    private val productsRepository = ProductsRepository.getInstance(application, errorListener)
 
 
     fun getCategory(binding: ActivityMainBinding) {

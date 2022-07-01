@@ -13,7 +13,7 @@
         android:layout_height="29dp"
         android:layout_margin="12dp"
         android:contentDescription="@string/ellipse_ic"
-        android:elevation="6dp"
+        android:elevation="4dp"
         android:src="@drawable/ic_ellipse"
         android:background="@drawable/shadow_btn"
         app:layout_constraintEnd_toEndOf="parent"

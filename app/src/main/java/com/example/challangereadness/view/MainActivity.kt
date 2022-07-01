@@ -1,5 +1,6 @@
 package com.example.challangereadness.view
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
@@ -15,18 +16,19 @@ import com.example.challangereadness.databinding.ActivityMainBinding
 import com.example.challangereadness.databinding.CardProductBinding
 import com.example.challangereadness.infra.ConstantKeys
 import com.example.challangereadness.infra.StatePreferences
+import com.example.challangereadness.listener.ErrorListener
 import com.example.challangereadness.listener.ProductListener
 import com.example.challangereadness.viewModel.MainViewModel
 import com.squareup.picasso.Picasso
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ErrorListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private var adapter = ProductsAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = MainViewModel(application, this)
         super.onCreate(savedInstanceState)
         getCategory()
         startAdapter()
@@ -129,6 +131,14 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerProducts.layoutManager =
             GridLayoutManager(this, 2)
         binding.recyclerProducts.adapter = adapter
+    }
+
+    override fun isInvalidCategory() {
+        AlertDialog.Builder(this)
+            .setTitle(ConstantKeys.DIALOG_TITLE)
+            .setMessage(ConstantKeys.DIALOG_MESSAGE)
+            .setNeutralButton("Ok", null)
+            .show()
     }
 }
 

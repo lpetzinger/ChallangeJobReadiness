@@ -2,7 +2,9 @@ package com.example.challangereadness.repository
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import com.example.challangereadness.listener.ErrorListener
 import com.example.challangereadness.model.HighLight.HighLightsModel
 import com.example.challangereadness.model.Product.ProductModel
 import com.example.challangereadness.service.ProductService
@@ -12,14 +14,14 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
 
-class ProductsRepository private constructor(context: Context) {
+class ProductsRepository private constructor(val context: Context, val errorListener: ErrorListener) {
 
     companion object {
         private lateinit var repository: ProductsRepository
 
-        fun getInstance(context: Context): ProductsRepository {
+        fun getInstance(context: Context, errorListener: ErrorListener): ProductsRepository {
             if (!Companion::repository.isInitialized) {
-                repository = ProductsRepository(context)
+                repository = ProductsRepository(context, errorListener)
                 return repository
             }
             return repository
@@ -43,9 +45,9 @@ class ProductsRepository private constructor(context: Context) {
                     call: Call<List<ProductModel>>,
                     response: Response<List<ProductModel>>
                 ) {
-                        _products.value = response.body()!!.filter {
-                            it.body?.pictures!!.isNotEmpty()
-                        }
+                    _products.value = response.body()!!.filter {
+                        it.body?.pictures!!.isNotEmpty()
+                    }
 
 
                 }
@@ -81,9 +83,13 @@ class ProductsRepository private constructor(context: Context) {
         val call: Call<HighLightsModel> = service.getIdProducts(_category)
         try {
             call.enqueue(object : Callback<HighLightsModel> {
-                override fun onResponse(call: Call<HighLightsModel>, response: Response<HighLightsModel>) {
+                override fun onResponse(
+                    call: Call<HighLightsModel>,
+                    response: Response<HighLightsModel>
+                ) {
                     if (response.raw().code() != 200) {
                         setCategory("MLB437616", _products)
+                            errorListener.isInvalidCategory()
                     } else {
                         createList(response, _products)
 
