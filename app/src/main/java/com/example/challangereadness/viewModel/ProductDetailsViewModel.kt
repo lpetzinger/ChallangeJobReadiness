@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.challangereadness.R
 import com.example.challangereadness.databinding.ActivityProductDetailsBinding
 import com.example.challangereadness.infra.ConstantKeys
+import com.example.challangereadness.model.Product.Description
 import com.example.challangereadness.model.Product.ProductModel
 import com.example.challangereadness.service.ProductService
 import com.example.challangereadness.service.RetrofitClient
@@ -21,7 +22,8 @@ class ProductDetailsViewModel(application: Application) : AndroidViewModel(appli
     fun getProductInfo(binding: ActivityProductDetailsBinding, id: String) {
         val service = RetrofitClient.create(ProductService::class.java)
         val call: Call<List<ProductModel>> = service.getProducts(id)
-
+        val descriptionCall: Call<Description> = service.getDescription(id)
+        getDescription(binding, descriptionCall)
 
         try {
             call.enqueue(object : Callback<List<ProductModel>> {
@@ -35,12 +37,12 @@ class ProductDetailsViewModel(application: Application) : AndroidViewModel(appli
 
                     binding.textPrice.text = ConstantKeys.formatToCurrency(data!!.price, "BRL", 2)
 
-
-
-                    val validOldPrice = if(data.originalPrice != 0F) data.originalPrice else data.price
+                    val validOldPrice =
+                        if (data.originalPrice != 0F) data.originalPrice else data.price
                     binding.textOldPrice.text =
                         ConstantKeys.formatToCurrency(validOldPrice, "BRL", 2)
-                    binding.textOldPrice.paintFlags = binding.textOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.textOldPrice.paintFlags =
+                        binding.textOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
                     binding.textSubtitle.text =
                         if (data.condition == "new") "Novo - ${data.soldQuantity} vendidos" else "Usado"
@@ -66,6 +68,24 @@ class ProductDetailsViewModel(application: Application) : AndroidViewModel(appli
         } catch (e: Exception) {
             Log.d("xablau", "$e")
         }
+
+    }
+
+    private fun getDescription(
+        binding: ActivityProductDetailsBinding,
+        descriptionCall: Call<Description>
+    ) {
+        descriptionCall.enqueue(object : Callback<Description> {
+            override fun onResponse(call: Call<Description>, response: Response<Description>) {
+                binding.textDescriptionContent.text = response.body()!!.plainText
+            }
+
+            override fun onFailure(call: Call<Description>, t: Throwable) {
+                Log.d("xablau", "$")
+
+            }
+
+        })
 
     }
 

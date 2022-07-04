@@ -1,6 +1,7 @@
 package com.example.challangereadness.service
 
 import com.example.challangereadness.model.HighLight.HighLightsModel
+import com.example.challangereadness.model.Product.Description
 import com.example.challangereadness.model.Product.ProductModel
 import retrofit2.Call
 import retrofit2.http.GET
@@ -14,5 +15,8 @@ interface ProductService {
 
     @GET("items")
     fun getProducts(@Query("ids") newQueryString: String): Call<List<ProductModel>>
+
+    @GET("items/{itemId}/description")
+    fun getDescription(@Path("itemId") itemId: String): Call<Description>
 
 }

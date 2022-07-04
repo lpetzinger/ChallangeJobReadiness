@@ -27,7 +27,7 @@ class RetrofitClient {
             .addInterceptor(
                 OAuthInterceptor(
                     "Bearer",
-                    "APP_USR-3967523105214896-070113-82a1fb2cf8746c1c83772979dfa6df41-139547814"
+                    "APP_USR-3967523105214896-070409-5728efe0ef285e8ac6392b4cdcd7a114-139547814"
                 )
             )
             .build()
